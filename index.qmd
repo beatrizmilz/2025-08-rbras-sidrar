@@ -1,0 +1,98 @@
+---
+title: "Obtendo dados do SIDRA/IBGE com R utilizando o pacote SIDRAR"
+subtitle: "Tutorial - 69ª RBras e ao 21º SEAGRO"
+author: "Beatriz Milz"
+format: revealjs
+---
+
+# O que é o SIDRA?
+
+## Sistema IBGE de Recuperação Automática - SIDRA
+
+> "O Sistema IBGE de Recuperação Automática - SIDRA permite a consulta aos dados armazenados no Banco de Tabelas Estatísticas."
+
+![](images/homepage_sidra.png){fig-align="center" width="100%"}
+
+
+## Dados disponíveis: PESQUISAS
+
+:::: {.columns}
+
+::: {.column width="40%"}
+![](images/sidra-pesquisas-1.png){fig-align="center" width="100%"}
+:::
+
+::: {.column width="60%"}
+![](images/sidra-pesquisas-2.png){fig-align="center" width="100%"}
+:::
+
+::::
+ 
+## Organização em tabelas 
+
+![](images/organizacao-tabelas.png){fig-align="center" width="100%"}
+ 
+## Interface web
+É possível consultar dados pela interface web:
+
+[![](images/sidra-web-1.png){fig-align="center" width="100%"}](https://sidra.ibge.gov.br/tabela/2609)
+
+## Interface web
+
+É possível fazer o download da tabela em formatos como `.xlsx` (Excel) e `.ods` (Open Document Spreadsheet):
+
+[![](images/sidra-web-2.png){fig-align="center" width="100%"}](https://sidra.ibge.gov.br/tabela/2609#resultado)
+[![](images/sidra-web-2.png){fig-align="center" width="100%"}](https://sidra.ibge.gov.br/tabela/2609#resultado)
+
+# O que é o `{sidrar}`?
+
+## Pacote `{sidrar}`
+
+O pacote `{sidrar}` é uma ferramenta desenvolvida para facilitar o acesso aos dados do SIDRA/IBGE diretamente no R, permitindo consultas e extração de dados de forma programática.
+
+O pacote está disponível no CRAN:
+
+```{r}
+#| eval: false
+#| echo: true
+install.packages("sidrar")
+```
+
+## Introdução ao pacote `{sidrar}`
+
+Carregar o pacote:
+```{r}
+#| echo: true
+library(sidrar)
+```
+
+
+Funções disponíveis:
+
+- `search_sidra()`: Pesquisa tabelas disponíveis no SIDRA.
+
+- `info_sidra()`: Obtém informações sobre uma tabela específica.
+
+- `get_sidra()`: Extrai dados de uma tabela específica do SIDRA.
+
+
+## `search_sidra()`
+
+Podemos buscar dados sabendo qual é o código da tabela.
+
+A função `search_sidra()` permite pesquisar tabelas disponíveis no SIDRA, e descobrir o código da tabela que queremos consultar.
+
+```{r}
+search_sidra("milho")
+```
+
+
+
+## `info_sidra()`
+
+## `get_sidra()`
+
+<!-- Este tutorial apresenta uma abordagem prática para acessar dados do SIDRA/IBGE diretamente no R, utilizando o pacote SIDRAR para interagir com a base de dados oficial do IBGE. Focaremos na obtenção da série histórica de Produção Agrícola Municipal (PAM) relacionadas à agricultura como exemplo prático, demonstrando como essas informações podem ser utilizadas para análises que contribuem com os Objetivos de Desenvolvimento Sustentável (ODS). Além disso, utilizaremos pacotes do tidyverse para organizar e transformar os dados, facilitando a preparação para análises mais complexas. O objetivo é capacitar os participantes a extrair dados por meio da API do SIDRA e prepará-los de maneira eficiente e estruturada.  -->
+
+<!-- Palavras-chave:  importação de dados, produção agrícola municipal, tidyverse, séries históricas.	 -->
+
