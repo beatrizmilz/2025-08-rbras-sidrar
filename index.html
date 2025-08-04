@@ -271,12 +271,188 @@ Beatriz Milz
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="fu">library</span>(sidrar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>As funções do pacote dependem de uma conexão com a internet, pois acessam a API do SIDRA para obter os dados.</p>
+<p>Recomendação: após obter os dados, é interessante salvá-los em um arquivo local para evitar consultas repetidas.</p>
+</section></section>
+<section>
+<section id="funções-do-pacote-sidrar" class="title-slide slide level1 center">
+<h1>Funções do pacote <code>{sidrar}</code></h1>
 <p>Funções disponíveis:</p>
 <ul>
 <li><p><code>search_sidra()</code>: Pesquisa tabelas disponíveis no SIDRA.</p></li>
 <li><p><code>info_sidra()</code>: Obtém informações sobre uma tabela específica.</p></li>
 <li><p><code>get_sidra()</code>: Extrai dados de uma tabela específica do SIDRA.</p></li>
 </ul>
+</section>
+<section id="search_sidra" class="slide level2">
+<h2><code>search_sidra()</code></h2>
+<p>A função <code>search_sidra()</code> permite pesquisar tabelas disponíveis no SIDRA, e descobrir o código da tabela que queremos consultar.</p>
+<p>Obs: <strong>eu</strong> prefiro fazer essa busca no próprio site do SIDRA.</p>
+</section>
+<section id="exemplo-de-uso-da-função-search_sidra" class="slide level2">
+<h2>Exemplo de uso da função <code>search_sidra()</code></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="fu">search_sidra</span>(<span class="st">"PNADC"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Tabela 5435 - Pessoas de 14 anos ou mais de idade, ocupadas na semana de referência, por grupamento ocupacional no trabalho principal"                                                                                                                                                                                                              
+ [2] "Tabela 5444 - Rendimento médio mensal real das pessoas de 14 anos ou mais de idade ocupadas na semana de referência com rendimento de trabalho, habitualmente e efetivamente recebidos no trabalho principal, por grupamento ocupacional no trabalho principal"                                                                                     
+ [3] "Tabela 9399 - Pessoas de 16 e 17 anos de idade classificadas na Proxy de Informalidade no trabalho principal e rendimento médio mensal real destas pessoas ocupadas na semana de referência com rendimento de trabalho, habitualmente recebido no trabalho principal, por grupamento ocupacional no trabalho principal - Estatísticas experimentais"
+ [4] "Tabela 9407 - Pessoas de 5 a 17 anos de idade em situação de trabalho infantil no trabalho principal, por grupo de idade e grupamento ocupacional no trabalho principal - Estatísticas experimentais"                                                                                                                                               
+ [5] "Tabela 9440 - Pessoas de 14 anos ou mais de idade ocupadas na semana de referência, exclusive os empregados no setor público e militares, por grupamento ocupacional no trabalho principal e trabalho por meio de plataforma digital de serviço no trabalho principal - Estatísticas experimentais"                                                 
+ [6] "Tabela 9457 - Indicador 8.5.1 - Rendimento médio por hora real das pessoas de 15 anos ou mais de idade ocupadas na semana de referência com rendimento de trabalho, habitualmente recebido em todos os trabalhos, por grupamento ocupacional no trabalho principal"                                                                                 
+ [7] "Tabela 9485 - Percentual de pessoas de 14 anos ou mais de idade ocupadas na semana de referência, exclusive os empregados no setor público e militares, que trabalharam por meio de plataformas de serviços, por grupamento ocupacional no trabalho principal - Estatísticas experimentais"                                                         
+ [8] "Tabela 9504 - Pessoas de 5 a 17 anos de idade que realizam atividade econômica, por grupo de idade e grupamento ocupacional no trabalho principal - Estatísticas experimentais"                                                                                                                                                                     
+ [9] "Tabela 9540 - Percentual de pessoas de 14 anos ou mais de idade ocupadas na semana de referência que realizaram teletrabalho no período de referência de 30 dias, por grupamento ocupacional no trabalho principal - Estatísticas experimentais"                                                                                                    
+[10] "Tabela 9572 - Percentual de pessoas de 14 anos ou mais de idade ocupadas na semana de referência que realizaram teletrabalho no domicílio no período de referência de 30 dias, por grupamento ocupacional no trabalho principal - Estatísticas experimentais"                                                                                       
+[11] "Tabela 9575 - Pessoas de 14 anos ou mais de idade ocupadas na semana de referência que trabalharam no domicílio, por grupamento ocupacional no trabalho principal e frequência do trabalho no domicílio - Estatísticas experimentais"                                                                                                               
+[12] "Tabela 9599 - Pessoas de 14 anos ou mais de idade ocupadas na semana de referência, por grupamento ocupacional no trabalho principal e realização de teletrabalho fora do domicílio no período de referência de 30 dias - Estatísticas experimentais"                                                                                               
+[13] "Tabela 9603 - Percentual de pessoas de 14 anos ou mais de idade ocupadas na semana de referência que realizaram teletrabalho fora do domicílio no período de referência de 30 dias, por grupamento ocupacional no trabalho principal - Estatísticas experimentais"                                                                                  
+[14] "Tabela 9617 - Pessoas de 14 anos ou mais de idade ocupadas na semana de referência, por grupamento ocupacional no trabalho principal e realização de teletrabalho no período de referência de 30 dias - Estatísticas experimentais"                                                                                                                 
+[15] "Tabela 9624 - Pessoas de 14 anos ou mais de idade ocupadas na semana de referência, por grupamento ocupacional no trabalho principal e realização de teletrabalho no domicílio no período de referência de 30 dias - Estatísticas experimentais"                                                                                                    </code></pre>
+</div>
+</div>
+</section>
+<section id="info_sidra" class="slide level2">
+<h2><code>info_sidra()</code></h2>
+<p>A função <code>info_sidra()</code> fornece informações sobre uma tabela específica do SIDRA, incluindo descrição, variáveis disponíveis e outras metadados.</p>
+<p>O resultado é um objeto do tipo lista. Recomendo salvar o resultado em uma variável para facilitar a consulta posterior.</p>
+<p>Lembrete: podemos usar o operador <code>$</code> para acessar os elementos da lista.</p>
+</section>
+<section id="exemplo-de-uso-da-função-info_sidra" class="slide level2">
+<h2>Exemplo de uso da função <code>info_sidra()</code></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>informacoes <span class="ot">&lt;-</span> <span class="fu">info_sidra</span>(<span class="st">"839"</span>)</span>
+<span id="cb5-2"><a href=""></a><span class="fu">names</span>(informacoes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "table"              "period"             "variable"          
+[4] "classific_category" "geo"               </code></pre>
+</div>
+</div>
+</section>
+<section id="acessando-informações-da-lista" class="slide level2">
+<h2>Acessando informações da lista</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>informacoes<span class="sc">$</span>table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Tabela 839: Área plantada, área colhida, quantidade produzida e rendimento médio de milho, 1ª e 2ª safras"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>informacoes<span class="sc">$</span>period</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a>informacoes<span class="sc">$</span>geo</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          cod                          desc
+1      Brazil                    Brasil (1)
+2      Region             Grande Região (5)
+3       State     Unidade da Federação (27)
+4        City             Município (5.438)
+5  MesoRegion  Mesorregião Geográfica (137)
+6 MicroRegion Microrregião Geográfica (548)</code></pre>
+</div>
+</div>
+</section>
+<section id="acessando-informações-da-lista-1" class="slide level2">
+<h2>Acessando informações da lista</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>informacoes<span class="sc">$</span>variable</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      cod                                                   desc
+1     109                               Área plantada (Hectares)
+2 1000109          Área plantada - percentual do total geral (%)
+3     216                                Área colhida (Hectares)
+4 1000216           Área colhida - percentual do total geral (%)
+5     214                       Quantidade produzida (Toneladas)
+6 1000214   Quantidade produzida - percentual do total geral (%)
+7     112 Rendimento médio da produção (Quilogramas por Hectare)</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>informacoes<span class="sc">$</span>classific_category</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$`c81 = Produto das lavouras temporárias (3):`
+     cod                       desc
+1  31693                      Total
+2 114253 Milho (em grão) - 1ª safra
+3 114254 Milho (em grão) - 2ª safra</code></pre>
+</div>
+</div>
+</section>
+<section id="get_sidra" class="slide level2">
+<h2><code>get_sidra()</code></h2>
+<p>A função <code>get_sidra()</code> é utilizada para extrair dados de uma tabela específica do SIDRA. É possível especificar parâmetros como período, abrangência geográfica e variáveis desejadas.</p>
+<p>Esses são os principais argumentos da função:</p>
+<ul>
+<li><code>x</code>: código da tabela do SIDRA (obrigatório).</li>
+<li><code>variable</code>: vetor (do tipo <code>integer</code>) de códigos das variáveis a serem retornadas (padrão: todas, exceto “Total”).</li>
+<li><code>period</code>: vetor (do tipo <code>character</code>) descrevendo o período dos dados (padrão: último disponível).</li>
+<li><code>geo</code>: vetor (do tipo <code>character</code>) descrevendo os níveis geográficos dos dados (padrão: “Brasil”).</li>
+</ul>
+</section>
+<section id="exemplo-de-uso-da-função-get_sidra" class="slide level2">
+<h2>Exemplo de uso da função <code>get_sidra()</code></h2>
+<p>Se indicarmos apenas o código da tabela, a função retorna dados sumarizados para o Brasil, com todas as variáveis disponíveis, para o último período disponível.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>resultados_sidra_839 <span class="ot">&lt;-</span> <span class="fu">get_sidra</span>(<span class="at">x =</span> <span class="dv">839</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exemplo-dos-dados-retornados" class="slide level2">
+<h2>Exemplo dos dados retornados</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a>resultados_sidra_839</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Nível Territorial (Código) Nível Territorial Unidade de Medida (Código)
+2                           1            Brasil                       1006
+3                           1            Brasil                       1006
+4                           1            Brasil                       1006
+5                           1            Brasil                       1006
+6                           1            Brasil                       1006
+7                           1            Brasil                       1006
+8                           1            Brasil                       1017
+9                           1            Brasil                       1017
+10                          1            Brasil                       1017
+11                          1            Brasil                         33
+12                          1            Brasil                         33
+13                          1            Brasil                         33
+         Unidade de Medida     Valor Brasil (Código) Brasil Ano (Código)  Ano
+2                 Hectares  22551202               1 Brasil         2023 2023
+3                 Hectares   5200166               1 Brasil         2023 2023
+4                 Hectares  17351036               1 Brasil         2023 2023
+5                 Hectares  22316340               1 Brasil         2023 2023
+6                 Hectares   5049785               1 Brasil         2023 2023
+7                 Hectares  17266555               1 Brasil         2023 2023
+8                Toneladas 131950246               1 Brasil         2023 2023
+9                Toneladas  27613439               1 Brasil         2023 2023
+10               Toneladas 104336807               1 Brasil         2023 2023
+11 Quilogramas por Hectare      5913               1 Brasil         2023 2023
+12 Quilogramas por Hectare      5468               1 Brasil         2023 2023
+13 Quilogramas por Hectare      6043               1 Brasil         2023 2023
+   Variável (Código)                     Variável
+2                109                Área plantada
+3                109                Área plantada
+4                109                Área plantada
+5                216                 Área colhida
+6                216                 Área colhida
+7                216                 Área colhida
+8                214         Quantidade produzida
+9                214         Quantidade produzida
+10               214         Quantidade produzida
+11               112 Rendimento médio da produção
+12               112 Rendimento médio da produção
+13               112 Rendimento médio da produção
+   Produto das lavouras temporárias (Código) Produto das lavouras temporárias
+2                                      31693                            Total
+3                                     114253       Milho (em grão) - 1ª safra
+4                                     114254       Milho (em grão) - 2ª safra
+5                                      31693                            Total
+6                                     114253       Milho (em grão) - 1ª safra
+7                                     114254       Milho (em grão) - 2ª safra
+8                                      31693                            Total
+9                                     114253       Milho (em grão) - 1ª safra
+10                                    114254       Milho (em grão) - 2ª safra
+11                                     31693                            Total
+12                                    114253       Milho (em grão) - 1ª safra
+13                                    114254       Milho (em grão) - 2ª safra</code></pre>
+</div>
+</div>
 <!-- Este tutorial apresenta uma abordagem prática para acessar dados do SIDRA/IBGE diretamente no R, utilizando o pacote SIDRAR para interagir com a base de dados oficial do IBGE. Focaremos na obtenção da série histórica de Produção Agrícola Municipal (PAM) relacionadas à agricultura como exemplo prático, demonstrando como essas informações podem ser utilizadas para análises que contribuem com os Objetivos de Desenvolvimento Sustentável (ODS). Além disso, utilizaremos pacotes do tidyverse para organizar e transformar os dados, facilitando a preparação para análises mais complexas. O objetivo é capacitar os participantes a extrair dados por meio da API do SIDRA e prepará-los de maneira eficiente e estruturada.  -->
 <!-- Palavras-chave:  importação de dados, produção agrícola municipal, tidyverse, séries históricas.    -->
 

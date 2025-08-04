@@ -61,11 +61,17 @@ install.packages("sidrar")
 ## Introdução ao pacote `{sidrar}`
 
 Carregar o pacote:
+
 ```{r}
 #| echo: true
 library(sidrar)
 ```
 
+As funções do pacote dependem de uma conexão com a internet, pois acessam a API do SIDRA para obter os dados.
+
+Recomendação: após obter os dados, é interessante salvá-los em um arquivo local para evitar consultas repetidas.
+
+# Funções do pacote `{sidrar}`
 
 Funções disponíveis:
 
@@ -78,19 +84,84 @@ Funções disponíveis:
 
 ## `search_sidra()`
 
-Podemos buscar dados sabendo qual é o código da tabela.
-
 A função `search_sidra()` permite pesquisar tabelas disponíveis no SIDRA, e descobrir o código da tabela que queremos consultar.
 
-```{r}
-search_sidra("milho")
-```
+Obs: **eu** prefiro fazer essa busca no próprio site do SIDRA.
 
+## Exemplo de uso da função `search_sidra()`
+
+```{r}
+#| echo: true
+search_sidra("PNADC")
+```
 
 
 ## `info_sidra()`
 
+A função `info_sidra()` fornece informações sobre uma tabela específica do SIDRA, incluindo descrição, variáveis disponíveis e outras metadados.
+
+O resultado é um objeto do tipo lista. Recomendo salvar o resultado em uma variável para facilitar a consulta posterior.
+
+Lembrete: podemos usar o operador `$` para acessar os elementos da lista.
+
+## Exemplo de uso da função `info_sidra()`
+
+```{r}
+#| echo: true
+#| cache: true
+
+informacoes <- info_sidra("839")
+names(informacoes)
+```
+
+## Acessando informações da lista
+
+```{r}
+#| echo: true
+informacoes$table
+informacoes$period
+informacoes$geo
+```
+
+## Acessando informações da lista
+
+```{r}
+#| echo: true
+informacoes$variable
+informacoes$classific_category
+```
+
+
 ## `get_sidra()`
+
+A função `get_sidra()` é utilizada para extrair dados de uma tabela específica do SIDRA. É possível especificar parâmetros como período, abrangência geográfica e variáveis desejadas.
+
+Esses são os principais argumentos da função:
+
+  - `x`: código da tabela do SIDRA (obrigatório).
+  - `variable`: vetor (do tipo `integer`) de códigos das variáveis a serem retornadas (padrão: todas, exceto "Total").
+  - `period`: vetor (do tipo `character`) descrevendo o período dos dados (padrão: último disponível).
+  - `geo`: vetor (do tipo `character`) descrevendo os níveis geográficos dos dados (padrão: "Brasil").
+
+## Exemplo de uso da função `get_sidra()`
+
+
+Se indicarmos apenas o código da tabela, a função retorna dados sumarizados para o Brasil, com todas as variáveis disponíveis, para o último período disponível.
+
+```{r}
+#| echo: true
+#| cache: true
+
+resultados_sidra_839 <- get_sidra(x = 839)
+```
+## Exemplo dos dados retornados
+
+```{r}
+#| echo: true
+resultados_sidra_839
+```
+
+
 
 <!-- Este tutorial apresenta uma abordagem prática para acessar dados do SIDRA/IBGE diretamente no R, utilizando o pacote SIDRAR para interagir com a base de dados oficial do IBGE. Focaremos na obtenção da série histórica de Produção Agrícola Municipal (PAM) relacionadas à agricultura como exemplo prático, demonstrando como essas informações podem ser utilizadas para análises que contribuem com os Objetivos de Desenvolvimento Sustentável (ODS). Além disso, utilizaremos pacotes do tidyverse para organizar e transformar os dados, facilitando a preparação para análises mais complexas. O objetivo é capacitar os participantes a extrair dados por meio da API do SIDRA e prepará-los de maneira eficiente e estruturada.  -->
 
