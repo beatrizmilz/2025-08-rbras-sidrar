@@ -25,12 +25,12 @@ $presentation-font-size-root: 35px;
 /*-- scss:rules --*/
 .reveal pre code {
   background-color: #f8f8f8;
-  font-size: 1.5em;
+  font-size: 1.3em;
   padding: 0.5em;
   line-height: 1.2em;
 }
 
-.reveal sourceCode {
+.reveal pre.sourceCode code {
   font-size: 1.5em;
 }
 

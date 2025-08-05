@@ -31,7 +31,7 @@ width="20%"}](https://ropensci.org/)
 [![](images/github-stars-logo_Color.webp){fig-align="center"
 width="25%"}](https://stars.github.com/profiles/beatrizmilz/)</center>
 
-##  {background-color="white" background-image="images/linha-do-tempo.jpg" background-size="contain"}
+##  {background-color="white" background-image="images/linha-do-tempo.jpg" background-size="contain" logo="false"}
 
 ::: footer
 :::
@@ -100,7 +100,6 @@ library(sidrar)
 
 As funções do pacote dependem de uma conexão com a internet, pois acessam a API do SIDRA para obter os dados.
 
-Recomendação: após obter os dados, é interessante salvá-los em um arquivo local para evitar consultas repetidas.
 
 # Funções do pacote `{sidrar}`
 
@@ -169,14 +168,14 @@ knitr::kable(informacoes$geo)
 
 ```{r}
 #| echo: true
-informacoes$variable
+knitr::kable(informacoes$variable)
 ```
 
 ## Acessando informações da lista
 
 ```{r}
 #| echo: true
-informacoes$classific_category
+knitr::kable(informacoes$classific_category)
 ```
 
 
@@ -184,12 +183,19 @@ informacoes$classific_category
 
 A função `get_sidra()` é utilizada para extrair dados de uma tabela específica do SIDRA. É possível especificar parâmetros como período, abrangência geográfica e variáveis desejadas.
 
+É possível consultar todos os arqumentos da função na documentação (`?get_sidra`).
+
+## `get_sidra()`
+
 Esses são os principais argumentos da função:
 
   - `x`: código da tabela do SIDRA (obrigatório).
   - `variable`: vetor (do tipo `integer`) de códigos das variáveis a serem retornadas (padrão: todas, exceto "Total").
   - `period`: vetor (do tipo `character`) descrevendo o período dos dados (padrão: último disponível).
   - `geo`: vetor (do tipo `character`) descrevendo os níveis geográficos dos dados (padrão: "Brasil").
+  - `classific`: vetor (do tipo `character`) com classificações da tabela (padrão: todas).
+  
+
 
 ## Exemplo de uso da função `get_sidra()`
 
@@ -200,14 +206,80 @@ Se indicarmos apenas o código da tabela, a função retorna dados sumarizados p
 #| echo: true
 #| cache: true
 
-resultados_sidra_839 <- get_sidra(x = 4092)
+resultados_sidra <- get_sidra(x = 4092)
 ```
 ## Exemplo dos dados retornados
 
 ```{r}
 #| echo: true
-resultados_sidra_839
+resultados_sidra
 ```
+
+## Como buscar vários períodos?
+
+Temos a informação dos períodos disponíveis na lista retornada pela função `info_sidra()`, como uma string:
+
+```{r}
+#| echo: true
+informacoes$period
+```
+
+E a função `get_sidra()` aceita um **vetor** de períodos!
+
+## Como buscar vários períodos?
+
+Podemos quebrar a string com os períodos em um vetor usando a função `str_split()` do pacote `{stringr}`:
+
+```{r}
+#| echo: true
+stringr::str_split(informacoes$period, ", ")
+```
+## Como buscar vários períodos?
+
+O resultado é uma lista, então precisamos acessar o primeiro elemento da lista (que é um vetor):
+
+```{r}
+#| echo: true
+stringr::str_split(informacoes$period, ", ")[[1]]
+```
+
+Esse é o formato que precisamos!
+
+## Como buscar vários períodos?
+
+Vamos salvar o resultado em uma variável:
+
+```{r}
+#| echo: true
+periodos <- stringr::str_split(informacoes$period, ", ")[[1]]
+```
+
+Com isso, podemos usar o vetor `periodos` como argumento na função `get_sidra()`:
+
+```{r}
+#| echo: true
+#| eval: false
+#| cache: true
+resultados_sidra_periodos_uf <- get_sidra(x = 4092,
+                                              period = periodos,
+                                              geo = c("State"))
+```
+
+## Recomendação
+
+Após obter os dados, é interessante salvá-los em um arquivo local para evitar consultas repetidas.
+
+O formato `.rds` é interessante para salvar objetos do R, pois preserva a estrutura dos dados:
+
+```{r}
+#| echo: true
+#| eval: false
+readr::write_rds(x = resultados_sidra_periodos_uf,
+                 file = "data-raw/dados_sidra_4092.rds")
+```
+
+
+
 
 # Conclusão
 
@@ -217,6 +289,17 @@ resultados_sidra_839
 
 ## Contato
 
+- Email: [milz.bea@gmail.com](mailto:milz.bea@gmail.com)
 
+- Página pessoal: [beamilz.com](https://beamilz.com)
 
-Obrigada!
+- Linkedin: [linkedin.com/in/beatriz-milz](https://www.linkedin.com/in/beatrizmilz/?originalSubdomain=br)
+
+- Instagram: [@bea.milz](https://www.instagram.com/bea.milz/)
+
+- Youtube: [youtube.com/@beamilz](https://www.youtube.com/@beamilz)
+
+<br>
+<center>
+### Obrigada!
+</center>

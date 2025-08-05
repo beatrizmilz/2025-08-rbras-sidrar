@@ -95,7 +95,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-<link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-8f40dc6646c7d493bb5b1e572b041fb4.css">
+<link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-0452b751fab7db2c6e1e245df25b2889.css">
 <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
 <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
 <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -218,7 +218,7 @@ Beatriz Milz
 <center>
 <a href="https://rladies-sp.org/"><img data-src="images/logo-rladies.png" class="quarto-figure quarto-figure-center" style="width:20.0%"></a> <a href="https://ropensci.org/"><img data-src="images/ropensci.png" class="quarto-figure quarto-figure-center" style="width:20.0%"></a> <a href="https://stars.github.com/profiles/beatrizmilz/"><img data-src="images/github-stars-logo_Color.webp" class="quarto-figure quarto-figure-center" style="width:25.0%"></a>
 </center>
-</section><section id="section" class="slide level2" data-background-color="white" data-background-image="images/linha-do-tempo.jpg" data-background-size="contain"><h2></h2>
+</section><section id="section" class="slide level2" data-background-color="white" data-background-image="images/linha-do-tempo.jpg" data-background-size="contain" data-logo="false"><h2></h2>
 <div class="footer">
 
 </div>
@@ -269,7 +269,6 @@ Beatriz Milz
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="fu">library</span>(sidrar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>As funções do pacote dependem de uma conexão com a internet, pois acessam a API do SIDRA para obter os dados.</p>
-<p>Recomendação: após obter os dados, é interessante salvá-los em um arquivo local para evitar consultas repetidas.</p>
 </section></section><section><section id="funções-do-pacote-sidrar" class="title-slide slide level1 center"><h1>Funções do pacote <code>{sidrar}</code>
 </h1>
 <p>Funções disponíveis:</p>
@@ -374,35 +373,80 @@ Beatriz Milz
 </div>
 </section><section id="acessando-informações-da-lista-3" class="slide level2"><h2>Acessando informações da lista</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a>informacoes<span class="sc">$</span>variable</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   cod
-1 1641
-2 4087
-3 4104
-4 4105
-                                                                                         desc
-1                                             Pessoas de  anos ou mais de idade (Mil pessoas)
-2                             Coeficiente de variação - Pessoas de  anos ou mais de idade (%)
-3                           Distribuição percentual das pessoas de  anos ou mais de idade (%)
-4 Coeficiente de variação - Distribuição percentual das pessoas de  anos ou mais de idade (%)</code></pre>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a>knitr<span class="sc">::</span><span class="fu">kable</span>(informacoes<span class="sc">$</span>variable)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 94%">
+</colgroup>
+<thead><tr class="header">
+<th style="text-align: left;">cod</th>
+<th style="text-align: left;">desc</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1641</td>
+<td style="text-align: left;">Pessoas de anos ou mais de idade (Mil pessoas)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4087</td>
+<td style="text-align: left;">Coeficiente de variação - Pessoas de anos ou mais de idade (%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">4104</td>
+<td style="text-align: left;">Distribuição percentual das pessoas de anos ou mais de idade (%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4105</td>
+<td style="text-align: left;">Coeficiente de variação - Distribuição percentual das pessoas de anos ou mais de idade (%)</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </section><section id="acessando-informações-da-lista-4" class="slide level2"><h2>Acessando informações da lista</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a>informacoes<span class="sc">$</span>classific_category</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>$`c629 = Condição em relação à força de trabalho e condição de ocupação (5):`
-    cod                           desc
-1 32385                          Total
-2 32386              Força de trabalho
-3 32387    Força de trabalho - ocupada
-4 32446 Força de trabalho - desocupada
-5 32447      Fora da força de trabalho</code></pre>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>knitr<span class="sc">::</span><span class="fu">kable</span>(informacoes<span class="sc">$</span>classific_category)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="kable_wrapper"><tbody><tr>
+<td>
+<table class="caption-top">
+<thead><tr class="header">
+<th style="text-align: left;">cod</th>
+<th style="text-align: left;">desc</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">32385</td>
+<td style="text-align: left;">Total</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">32386</td>
+<td style="text-align: left;">Força de trabalho</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">32387</td>
+<td style="text-align: left;">Força de trabalho - ocupada</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">32446</td>
+<td style="text-align: left;">Força de trabalho - desocupada</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">32447</td>
+<td style="text-align: left;">Fora da força de trabalho</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr></tbody></table>
 </div>
 </div>
 </section><section id="get_sidra" class="slide level2"><h2><code>get_sidra()</code></h2>
 <p>A função <code>get_sidra()</code> é utilizada para extrair dados de uma tabela específica do SIDRA. É possível especificar parâmetros como período, abrangência geográfica e variáveis desejadas.</p>
+<p>É possível consultar todos os arqumentos da função na documentação (<code>?get_sidra</code>).</p>
+</section><section id="get_sidra-1" class="slide level2"><h2><code>get_sidra()</code></h2>
 <p>Esses são os principais argumentos da função:</p>
 <ul>
 <li>
@@ -413,15 +457,17 @@ Beatriz Milz
 <code>period</code>: vetor (do tipo <code>character</code>) descrevendo o período dos dados (padrão: último disponível).</li>
 <li>
 <code>geo</code>: vetor (do tipo <code>character</code>) descrevendo os níveis geográficos dos dados (padrão: “Brasil”).</li>
+<li>
+<code>classific</code>: vetor (do tipo <code>character</code>) com classificações da tabela (padrão: todas).</li>
 </ul></section><section id="exemplo-de-uso-da-função-get_sidra" class="slide level2"><h2>Exemplo de uso da função <code>get_sidra()</code>
 </h2>
 <p>Se indicarmos apenas o código da tabela, a função retorna dados sumarizados para o Brasil, com todas as variáveis disponíveis, para o último período disponível.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a>resultados_sidra_839 <span class="ot">&lt;-</span> <span class="fu">get_sidra</span>(<span class="at">x =</span> <span class="dv">4092</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a>resultados_sidra <span class="ot">&lt;-</span> <span class="fu">get_sidra</span>(<span class="at">x =</span> <span class="dv">4092</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="exemplo-dos-dados-retornados" class="slide level2"><h2>Exemplo dos dados retornados</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>resultados_sidra_839</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>resultados_sidra</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Nível Territorial (Código) Nível Territorial Unidade de Medida (Código)
 2                           1            Brasil                       1572
@@ -551,6 +597,63 @@ Beatriz Milz
 21                                      Fora da força de trabalho</code></pre>
 </div>
 </div>
+</section><section id="como-buscar-vários-períodos" class="slide level2"><h2>Como buscar vários períodos?</h2>
+<p>Temos a informação dos períodos disponíveis na lista retornada pela função <code>info_sidra()</code>, como uma string:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>informacoes<span class="sc">$</span>period</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "201201, 201202, 201203, 201204, 201301, 201302, 201303, 201304, 201401, 201402, 201403, 201404, 201501, 201502, 201503, 201504, 201601, 201602, 201603, 201604, 201701, 201702, 201703, 201704, 201801, 201802, 201803, 201804, 201901, 201902, 201903, 201904, 202001, 202002, 202003, 202004, 202101, 202102, 202103, 202104, 202201, 202202, 202203, 202204, 202301, 202302, 202303, 202304, 202401, 202402, 202403, 202404, 202501"</code></pre>
+</div>
+</div>
+<p>E a função <code>get_sidra()</code> aceita um <strong>vetor</strong> de períodos!</p>
+</section><section id="como-buscar-vários-períodos-1" class="slide level2"><h2>Como buscar vários períodos?</h2>
+<p>Podemos quebrar a string com os períodos em um vetor usando a função <code>str_split()</code> do pacote <a href="https://stringr.tidyverse.org">stringr</a>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>stringr<span class="sc">::</span><span class="fu">str_split</span>(informacoes<span class="sc">$</span>period, <span class="st">", "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+ [1] "201201" "201202" "201203" "201204" "201301" "201302" "201303" "201304"
+ [9] "201401" "201402" "201403" "201404" "201501" "201502" "201503" "201504"
+[17] "201601" "201602" "201603" "201604" "201701" "201702" "201703" "201704"
+[25] "201801" "201802" "201803" "201804" "201901" "201902" "201903" "201904"
+[33] "202001" "202002" "202003" "202004" "202101" "202102" "202103" "202104"
+[41] "202201" "202202" "202203" "202204" "202301" "202302" "202303" "202304"
+[49] "202401" "202402" "202403" "202404" "202501"</code></pre>
+</div>
+</div>
+</section><section id="como-buscar-vários-períodos-2" class="slide level2"><h2>Como buscar vários períodos?</h2>
+<p>O resultado é uma lista, então precisamos acessar o primeiro elemento da lista (que é um vetor):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a>stringr<span class="sc">::</span><span class="fu">str_split</span>(informacoes<span class="sc">$</span>period, <span class="st">", "</span>)[[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "201201" "201202" "201203" "201204" "201301" "201302" "201303" "201304"
+ [9] "201401" "201402" "201403" "201404" "201501" "201502" "201503" "201504"
+[17] "201601" "201602" "201603" "201604" "201701" "201702" "201703" "201704"
+[25] "201801" "201802" "201803" "201804" "201901" "201902" "201903" "201904"
+[33] "202001" "202002" "202003" "202004" "202101" "202102" "202103" "202104"
+[41] "202201" "202202" "202203" "202204" "202301" "202302" "202303" "202304"
+[49] "202401" "202402" "202403" "202404" "202501"</code></pre>
+</div>
+</div>
+<p>Esse é o formato que precisamos!</p>
+</section><section id="como-buscar-vários-períodos-3" class="slide level2"><h2>Como buscar vários períodos?</h2>
+<p>Vamos salvar o resultado em uma variável:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a>periodos <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_split</span>(informacoes<span class="sc">$</span>period, <span class="st">", "</span>)[[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Com isso, podemos usar o vetor <code>periodos</code> como argumento na função <code>get_sidra()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a>resultados_sidra_periodos_uf <span class="ot">&lt;-</span> <span class="fu">get_sidra</span>(<span class="at">x =</span> <span class="dv">4092</span>,</span>
+<span id="cb24-2"><a href=""></a>                                              <span class="at">period =</span> periodos,</span>
+<span id="cb24-3"><a href=""></a>                                              <span class="at">geo =</span> <span class="fu">c</span>(<span class="st">"State"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="recomendação" class="slide level2"><h2>Recomendação</h2>
+<p>Após obter os dados, é interessante salvá-los em um arquivo local para evitar consultas repetidas.</p>
+<p>O formato <code>.rds</code> é interessante para salvar objetos do R, pois preserva a estrutura dos dados:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a>readr<span class="sc">::</span><span class="fu">write_rds</span>(<span class="at">x =</span> resultados_sidra_periodos_uf,</span>
+<span id="cb25-2"><a href=""></a>                 <span class="at">file =</span> <span class="st">"data-raw/dados_sidra_4092.rds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section></section><section><section id="conclusão" class="title-slide slide level1 center"><h1>Conclusão</h1>
 
 </section><section id="materiais" class="slide level2"><h2>Materiais</h2>
@@ -558,7 +661,16 @@ Beatriz Milz
 <li>Material do curso “Introdução à análise de dados no R”: <a href="https://ipeadata-lab.github.io/curso_r_intro_202409/03_importacao.html#pacote-sidrar">Importação</a>, <a href="https://ipeadata-lab.github.io/curso_r_intro_202409/05_transformacao.html">transformação</a>
 </li>
 </ul></section><section id="contato" class="slide level2"><h2>Contato</h2>
-<p>Obrigada!</p>
+<ul>
+<li><p>Email: <a href="mailto:milz.bea@gmail.com">milz.bea@gmail.com</a></p></li>
+<li><p>Página pessoal: <a href="https://beamilz.com">beamilz.com</a></p></li>
+<li><p>Linkedin: <a href="https://www.linkedin.com/in/beatrizmilz/?originalSubdomain=br">linkedin.com/in/beatriz-milz</a></p></li>
+<li><p>Instagram: <a href="https://www.instagram.com/bea.milz/"><span class="citation" data-cites="bea.milz">@bea.milz</span></a></p></li>
+<li><p>Youtube: <a href="https://www.youtube.com/@beamilz">youtube.com/<span class="citation" data-cites="beamilz">@beamilz</span></a></p></li>
+</ul>
+<br><center>
+<h3 id="obrigada">Obrigada!</h3>
+</center>
 
 </section></section>
 </div>
