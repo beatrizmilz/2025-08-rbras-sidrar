@@ -19,7 +19,7 @@ format:
 ## Beatriz Milz
 
 -   Doutora em Ciência Ambiental no IEE/USP
--   Atualmente: Estágio pós-doutoral na UFABC
+-   Atualmente: Estágio pós-doutoral na UFABC (até out/2025)
 -   Co-organizadora da [R-Ladies São Paulo](https://rladies-sp.org)
 -   *Software peer review editor* na [rOpenSci](https://ropensci.org/)
 -   [GitHub Star](https://stars.github.com/profiles/beatrizmilz/)
