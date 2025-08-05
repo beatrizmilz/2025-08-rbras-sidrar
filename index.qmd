@@ -12,14 +12,13 @@ format:
     code-copy: true
     scrollable: true
     theme: rbras.scss
-    preview-links: true
 ---
 
 
 ## Beatriz Milz
 
 -   Doutora em Ciência Ambiental no IEE/USP
--   Atualmente: Estágio pós-doutoral na UFABC (até out/2025)
+-   Atualmente: Estágio pós-doutoral na UFABC
 -   Co-organizadora da [R-Ladies São Paulo](https://rladies-sp.org)
 -   *Software peer review editor* na [rOpenSci](https://ropensci.org/)
 -   [GitHub Star](https://stars.github.com/profiles/beatrizmilz/)
@@ -73,7 +72,7 @@ width="25%"}](https://stars.github.com/profiles/beatrizmilz/)</center>
 É possível fazer o download da tabela em formatos como `.xlsx` (Excel) e `.ods` (Open Document Spreadsheet):
 
 [![](images/sidra-web-2.png){fig-align="center" width="100%"}](https://sidra.ibge.gov.br/tabela/2609#resultado)
-[![](images/sidra-web-2.png){fig-align="center" width="100%"}](https://sidra.ibge.gov.br/tabela/2609#resultado)
+
 
 # O que é o `{sidrar}`?
 
@@ -285,7 +284,11 @@ readr::write_rds(x = resultados_sidra_periodos_uf,
 
 ## Materiais
 
-- Material do curso "Introdução à análise de dados no R": [Importação](https://ipeadata-lab.github.io/curso_r_intro_202409/03_importacao.html#pacote-sidrar), [transformação](https://ipeadata-lab.github.io/curso_r_intro_202409/05_transformacao.html)
+- [Script](https://github.com/beatrizmilz/2025-08-rbras-sidrar/blob/main/script.R) e [repositório](https://github.com/beatrizmilz/2025-08-rbras-sidrar/)
+
+- Material do curso ["Introdução à análise de dados no R"](https://ipeadata-lab.github.io/curso_r_intro_202409/03_importacao.html#pacote-sidrar)
+
+![](images/grafico_ipeaplot.png){fig-align="center" width="50%"}
 
 ## Contato
 
